@@ -4,6 +4,7 @@ demo中出现的地方：
   <img src="./img6.png" width="45%" />
   <img src="./img7.png" width="45%" />
 </p>
+
 ## 最简单的方法（不推荐）
 
 在 Decal 材质里创建一个 **Scalar 参数**（充当弹孔 Decal 的 Opacity）。然后将 Decal 作为一个 **Actor**（因为这个 Decal 需要一些自己的逻辑，即蓝图内部通过 Tick 类似的手段让 Decal 里的 Opacity Scalar 变化，图中的timeline方法其实就是一种让CPU不停去sample一条Curve然后赋值）（比如蓝图变量一个时间柄time handler，get remained除以float持续时间总长度这种事情，相当于让CPU不断地做除法的归一化运算）。每当机关枪射击，最后用 **Spawn Actor from Class** 去触发（即包含 Decal 组件的一个 Actor）。
